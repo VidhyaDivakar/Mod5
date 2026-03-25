@@ -1,0 +1,48 @@
+.site-header {
+    background: rgba(105, 202, 202, 0.5);
+    color: #fff;
+    position: absolute;
+    /* To place the header over the hero image */
+    padding: 0px 15px;
+    width: 98%;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+}
+body {
+    background-color: black
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    font-weight: bold;
+    justify-content: right;
+    padding: 10p, 10px;
+    }
+.main-nav a {
+    text-decoration: none;
+    color: rgb(211, 238, 243);
+    font-weight: bold;
+}
+
+h1, h2, p {
+     color: rgb(211, 238, 243);
+}
+
+#listSkills {
+color: rgb(211, 238, 243);
+}
+
+h3 {
+    color: rgb(211, 238, 243);
+}
+
+ul{
+    color: rgb(211, 238, 243);
+    font-size: 13.5px;
+}
+
+.font {
+  font-family: 'Courier New', serif;
+}
+
