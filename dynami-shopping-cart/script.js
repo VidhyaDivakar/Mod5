@@ -17,21 +17,21 @@ function updateTotalPrice(amount) {
 addProductButton.addEventListener("click", handleAdd);
 
 function handleAdd() {
-  const pName = productNameInput.value;
-  const pPrice = productPriceInput.value;
-  if (pName === "" || isNaN(pPrice) || pPrice <= 0) {
+  const name = productNameInput.value;
+  const price = parseFloat(productPriceInput.value);
+  if (name === "" || isNaN(price) || price <= 0) {
     alert("Enter valid product name and price");
     return;
   }
 
-  console.log(pName, pPrice);
+  console.log(name, price);
 
   // creating list items inside the <ul> cart list; <li> will be created inside <ul>
   const li = document.createElement("li");
-  
-  li.dataset.pPrice = pPrice; // add the data inside the element that has price. this is hidden storage
-  li.textContent = `{pName} - $${pPrice.toFixed(3)}` // this is what will be displayed in the screen for the user //Total $ 0
-console.log(pName, pPrice);
+  li.classList.add("cart-item") // class cart-item to add styles
+  li.dataset.price = price; // add the data inside the element that has price. this is hidden storage
+  li.textContent = `${name} - $${price.toFixed(2)}` // this is what will be displayed in the screen for the user //Total $ 0
+console.log(name, price);
 
 
 //Function for Remove Button and logic
@@ -43,7 +43,7 @@ li.appendChild(removeBtn); // this is add remove button next to the items in <li
 cart.appendChild(li); // this is add li items in the cart <ul>
 productNameInput.value = ""; // after entering the value, add button, then this happens; the Name input field is cleared for next input value.
 productPriceInput.value = "";
-
+updateTotalPrice(price);
 }
 
   // Function to remove an item
@@ -53,3 +53,4 @@ productPriceInput.value = "";
     updateTotalPrice(-price);
     item.remove();
   }
+  
