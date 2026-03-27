@@ -1,0 +1,63 @@
+
+body {
+    height: 100vh;
+    background-color: whitesmoke;
+    justify-content: center;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* space between form and gif */
+}
+
+
+h1{
+    margin: 20px;
+    color:azure;
+    padding:10px;
+    
+}
+
+
+#formStyle{
+    background-color: rgb(66, 68, 68);
+    height: 700px;
+    width: 500px;
+    text-align: left;
+    justify-content: center;
+    align-items:center;
+    border-radius: 10px;
+}
+img{
+     height: 700px;
+    width: 300px;
+}
+label{
+    color:azure;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px;
+}
+
+input {
+margin: 10px;
+border-radius: 10px;
+padding: 8px;
+width: 300px;
+}
+
+/* CSS For Pseudo classes */
+input:required {
+    border-left: 3px solid orange;
+}
+
+input:invalid {
+    border-left: 3px solid rgb(255, 38, 0);
+    background-color: white;
+}
+
+input:valid {
+    border-left: 3px solid rgb(0, 255, 106);
+    background-color: white;
+}

@@ -1,0 +1,11 @@
+body{
+    width: 100vh;
+    background-color: black;
+    color:aliceblue;
+}
+
+#faq1, #faq2 {
+    text-decoration: underline;
+}
+
+/*  Use transitions (e.g., max-height) to make answer toggling visually appealing.*/

@@ -3,9 +3,9 @@ const container = document.getElementById('card-container');
 const cloneButton = document.getElementById('clone-card');
 
 cloneButton.addEventListener('click', () => {
-const clonedCard = template.cloneNode(true); // Deep clone
-clonedCard.style.display = 'block';
-container.appendChild(clonedCard);
+const clonedCard = template.cloneNode(true); // Deep clone true means deep clone: it copies the element and all its child elements.
+clonedCard.style.display = 'block'; // before the card was hidden, now using block is a CSS display value. It takes full width; It starts on a new line
+container.appendChild(clonedCard); // “Put this new card inside this container”
 });
 
 const content = document.getElementById('content');
@@ -26,3 +26,9 @@ const item = event.target.closest('li');
 item.remove(); // Efficient removal
 }
 });
+
+// cloneButton.addEventListener('click', ()=>{
+// const clonedCard = template.cloneNode(true);
+// clonedCard.style.display = 'block';
+// container.appendChild(  ClonedCard);
+// });

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormValidation</title>
+    <script defer src="./form.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <form id="formStyle">
+            <h1> Join My Club!</h1>
+            <div class="formgroup">
+                <label for="username">Username:</label>
+                <br>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="formgroup">
+                <label for="email">Email:</label>
+                <br>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="formgroup">
+                <label for="quantity">Quantity (1-10):</label>
+                <br>
+                <input type="number" id="quantity" name="quantity" min="1" max="10" step="1" required>
+            </div>
+            <div class="formgroup">
+                <label for="website">Website:</label>
+                <br>
+                <input type="url" id="website" name="website">
+            </div>
+            <div class="formgroup">
+                <label for="password">Password (min 8 characters):</label>
+                <br>
+                <input type="password" id="password" name="password" minlength="8" required>
+            </div>
+            <div class="formgroup">
+                <label for="age">Age (must be 18 or older):</label>
+                <br>
+                <input type="number" id="age" name="age" min="18" required>
+            </div>
+
+            <div class="formgroup">
+                <label for="zipcode">Zip Code (5 digits):</label>
+                <br>
+                <input type="text" id="zipcode" name="zipcode" pattern="\\d{5}" title="Please enter a 5-digit zip code"
+                    required>
+            </div>
+        </form>
+        <aside class="aside">
+            <img src="./img/formAside.gif" alt="">
+        </aside>
+    </div>
+</body>
+
+</html>
