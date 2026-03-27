@@ -48,9 +48,8 @@ updateTotalPrice(price);
 
   // Function to remove an item
   function removeItem(event) {
-    const item = event.target.closest('li');
+    const item = event.target.closest('li'); // the event starts from the button,then the whole list item. Also, we need the price from this line.
     const price = parseFloat(item.dataset.price);
     updateTotalPrice(-price);
     item.remove();
   }
-  
