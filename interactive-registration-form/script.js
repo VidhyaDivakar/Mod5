@@ -8,7 +8,7 @@ const submit = document.getElementById("submit");
 
 //username email password confirmPassword button
 // add local storage
-//Step 1 Auto Saving on User Input
+//Auto Saving on User Input
 username = addEventListener("input", handleSave);
 email = addEventListener("input", handleSave);
 password = addEventListener("input", handleSave);
@@ -19,8 +19,21 @@ function handleSave(){
         email: email.value,
         password: password.value
     };
-    localStorage.setItem("userData", JSON.stringify(userData);)
+    localStorage.setItem("userData", JSON.stringify(userData));
 }
+// Auto-load on page refresh
+window.addEventListener("DOMContentLoaded", loadData);
+
+function loadData() {
+  const storedData = JSON.parse(localStorage.getItem("userData"));
+
+  if (storedData) {
+    usernameInput.value = storedData.username || "";
+    emailInput.value = storedData.email || "";
+    passwordInput.value = storedData.password || "";
+  }
+}
+
 
 
 
