@@ -21,11 +21,12 @@ function handleLoad() {
     username.value = storedData.username || "";
     email.value = storedData.email || "";
     password.value = storedData.password || "";
+    confirmPassword.value = storedData.password || "";
   }
 }
 
 //add event listeners
-username.addEventListener("input", ()=>{
+username.addEventListener("input", validate()=>{
 //adding input validity for the fields inputElement.validity
 });
 
@@ -50,6 +51,40 @@ submit.addEventListener("click", handleSubmit(){
 //optional reset the form
 });
 
+// Functions to Validate 
+function validateUsername (){
+if(username.validity.valueMissing){
+    usernameError.textContent= "Username is required";
+} else {
+    usernameError.textContent="";
+}
+}
+function validateEmail() {
+  if (email.validity.valueMissing) {
+    emailError.textContent = "Email is required";
+  } else if (email.validity.typeMismatch) {
+    emailError.textContent = "Enter a valid email";
+  } else {
+    emailError.textContent = "";
+  }
+}
+function validatePassword (){
+    if (password.validity.valueMissing){
+        passwordError.textContent = "Password is required";
+    } else if (password.value.length < 6){
+        passwordError.textContent = "Password must be atleast 6 characters";
+    } else {
+        passwordError.textContent ="";
+    }
+    }
+function validateConfirmPassword() {
+    if(confirmPassword.value !== password.value ){
+        confirmPasswordError.textContent = "Passwords do not match";
+    }else {
+        confirmPasswordError.textContent = "";
+    }
+    }
+
 
 
 // add local storage flow -> Page loads ,JS waits for DOM to be ready, Reads saved data from localStorage, Converts it into object, If data exists → fills form automatically
@@ -62,7 +97,7 @@ function handleSave(){
     const userData = {
         username: username.value,
         email: email.value,
-        password: password.value
+        password: password.value // not good to store password, but retaining for learning purpose
     };
     localStorage.setItem("userData", JSON.stringify(userData)); // the user data is stored as string
 }
