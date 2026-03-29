@@ -4,10 +4,31 @@ const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirmPassword");
 const submit = document.getElementById("submit");
 
+//add event listeners
+username.addEventListener("input", ()=>{
+//adding input validity for the fields inputElement.validity
+});
+
+email.addEventListener("input", ()=>{
+//adding input validity for the fields inputElement.validity
+});
+password.addEventListener("input", ()=>{
+//adding input validity for the fields inputElement.validity
+});
+confirmPassword.addEventListener("input", ()=>{
+//adding input validity for the fields inputElement.validity
+// check password match add custom error message in span
+});
+
+submit.addEventListener("click", ()=>{
+// event.preventDefault()
+//alert() save passwrd to localStroage
+//optional reset the form
+});
 
 
-//username email password confirmPassword button
-// add local storage
+
+// add local storage flow -> Page loads ,JS waits for DOM to be ready, Reads saved data from localStorage, Converts it into object, If data exists → fills form automatically
 //Auto Saving on User Input
 username = addEventListener("input", handleSave);
 email = addEventListener("input", handleSave);
@@ -19,23 +40,23 @@ function handleSave(){
         email: email.value,
         password: password.value
     };
-    localStorage.setItem("userData", JSON.stringify(userData));
+    localStorage.setItem("userData", JSON.stringify(userData)); // the user data is stored as string
 }
 // Auto-load on page refresh
-window.addEventListener("DOMContentLoaded", loadData);
+window.addEventListener("DOMContentLoaded", handleLoad); 
 
-function loadData() {
-  const storedData = JSON.parse(localStorage.getItem("userData"));
+function handleLoad() {
+  const storedData = JSON.parse(localStorage.getItem("userData")); // user data is parsed to JS object
 
   if (storedData) {
-    usernameInput.value = storedData.username || "";
-    emailInput.value = storedData.email || "";
-    passwordInput.value = storedData.password || "";
+    username.value = storedData.username || "";
+    email.value = storedData.email || "";
+    password.value = storedData.password || "";
   }
 }
 
 
 
 
-//add event listeners
+
 
