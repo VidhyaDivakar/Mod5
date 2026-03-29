@@ -1,9 +1,10 @@
 // form elements 
+const form = document.getElementById("registrationForm");
 const username = document.getElementById("username");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirmPassword");
-const submit = document.getElementById("submit");
+const submit = document.getElementById("button");
 
 // to display error messages, creating constant variables for the elements
 const usernameError = document.getElementById("usernameError");
@@ -12,88 +13,95 @@ const passwordError = document.getElementById("passwordError");
 const confirmPasswordError = document.getElementById("confirmPasswordError");
 
 // Function to Auto-load data on page refresh
-window.addEventListener("DOMContentLoaded", handleLoad); 
+window.addEventListener("DOMContentLoaded", handleLoad);
 
 function handleLoad() {
-  const storedData = JSON.parse(localStorage.getItem("userData")); // user data is parsed to JS object
+    const storedData = JSON.parse(localStorage.getItem("userData")); // user data is parsed to JS object
 
-  if (storedData) {
-    username.value = storedData.username || "";
-    email.value = storedData.email || "";
-    password.value = storedData.password || "";
-    confirmPassword.value = storedData.password || "";
-  }
+    if (storedData) {
+        username.value = storedData.username || "";
+        email.value = storedData.email || "";
+        password.value = storedData.password || "";
+        confirmPassword.value = storedData.password || "";
+    }
 }
 
-//add event listeners
-username.addEventListener("input", validate()=>{
-//adding input validity for the fields inputElement.validity
-});
+//add event listeners along with validationg functions
+username.addEventListener("input", validateUsername);
+email.addEventListener("input", validateEmail);
+password.addEventListener("input", validatePassword);
+confirmPassword.addEventListener("input", validateConfirmPassword);
 
-email.addEventListener("input", ()=>{
-//adding input validity for the fields inputElement.validity
-});
-password.addEventListener("input", ()=>{
-//adding input validity for the fields inputElement.validity
-});
-confirmPassword.addEventListener("input", ()=>{
-//adding input validity for the fields inputElement.validity
-// check password match add custom error message in span
-});
+form.addEventListener("submit", function (event) { //Click, keyword press enter both works. validation is done in submit. these are not covered in click keyword
+    event.preventDefault(); // to prevent default reload one click submit button
 
-submit.addEventListener("click", handleSubmit(){
-    if(!nameInput.validity.valid){
-        alert('Please enter your name.');
-        return;
+
+    // calling all the vaidation funcitions again
+    validateUsername();
+    validateEmail();
+    validatePassword();
+    validateConfirmPassword();
+
+    // checking if all the const variables created for errors are empty   
+    if (
+        usernameError.textContent === "" &&
+        emailError.textContent === "" &&
+        passwordError.textContent === "" &&
+        confirmPasswordError.textContent === ""
+    ) {
+        alert("Form submitted!");
+        handleSave(); // calling Save function
+        form.reset();
     }
-// event.preventDefault()
-//alert() save passwrd to localStroage
-//optional reset the form
+    else {
+        if (usernameError.textContent) username.focus(); // to move curse to the first error field
+        else if (emailError.textContent) email.focus();
+        else if (passwordError.textContent) password.focus();
+        else confirmPassword.focus();
+    }
+    console.log("submit triggered");
+    console.log("validation passed");
 });
 
 // Functions to Validate 
-function validateUsername (){
-if(username.validity.valueMissing){
-    usernameError.textContent= "Username is required";
-} else {
-    usernameError.textContent="";
-}
+function validateUsername() {
+    if (username.validity.valueMissing) {
+        usernameError.textContent = "Username is required";
+    } else if (username.value.length < 5) {
+        usernameError.textContent = "Username must be atleast 5 characters";
+    } else {
+        usernameError.textContent = "";
+    }
 }
 function validateEmail() {
-  if (email.validity.valueMissing) {
-    emailError.textContent = "Email is required";
-  } else if (email.validity.typeMismatch) {
-    emailError.textContent = "Enter a valid email";
-  } else {
-    emailError.textContent = "";
-  }
+    if (email.validity.valueMissing) {
+        emailError.textContent = "Email is required";
+    } else if (email.validity.typeMismatch) {
+        emailError.textContent = "Enter a valid email";
+    } else {
+        emailError.textContent = "";
+    }
 }
-function validatePassword (){
-    if (password.validity.valueMissing){
+function validatePassword() {
+    if (password.validity.valueMissing) {
         passwordError.textContent = "Password is required";
-    } else if (password.value.length < 6){
+    } else if (password.value.length < 6) {
         passwordError.textContent = "Password must be atleast 6 characters";
     } else {
-        passwordError.textContent ="";
+        passwordError.textContent = "";
     }
-    }
+}
 function validateConfirmPassword() {
-    if(confirmPassword.value !== password.value ){
+    if (confirmPassword.value !== password.value) {
         confirmPasswordError.textContent = "Passwords do not match";
-    }else {
+    } else {
         confirmPasswordError.textContent = "";
     }
-    }
-
-
-
+}
 // add local storage flow -> Page loads ,JS waits for DOM to be ready, Reads saved data from localStorage, Converts it into object, If data exists → fills form automatically
 //Auto Saving on User Input
-username = addEventListener("input", handleSave);
-email = addEventListener("input", handleSave);
-password = addEventListener("input", handleSave);
 
-function handleSave(){
+function handleSave() {
     const userData = {
         username: username.value,
         email: email.value,
