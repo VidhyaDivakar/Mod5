@@ -1,3 +1,87 @@
-body{
-    background-color: aqua;
+/* Page layout */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #4b5475;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Sections */
+section {
+  background: #141414;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+}
+
+/* Headings */
+h2 {
+  margin-bottom: 15px;
+  color: whitesmoke
+}
+
+/* Form layout */
+form div {
+  margin-bottom: 15px;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: rgb(71, 150, 77)
+}
+
+/* Inputs and textarea */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Focus effect */
+input:focus, textarea:focus {
+  border-color: #2cb455;
+  outline: none;
+}
+
+/* Button */
+button {
+  background-color: #43c029;
+  color: whitesmoke;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1a701a;
+}
+
+/* Error messages */
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Posts container */
+#postsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Individual post card (when JS adds posts) */
+.post {
+  background: #f9f9f9;
+  padding: 15px;
+  border-left: 4px solid #4a90e2;
+  border-radius: 5px;
 }
