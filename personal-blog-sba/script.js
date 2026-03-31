@@ -59,13 +59,20 @@ form.addEventListener("submit", function (event) {
     console.log("validation passed");
 });
 
+let editPostIndex = -1; //
 function handleSave() {
     const newPost = {
         title: title.value,
         content: content.value
     };
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
-    posts.push(newPost);
+    if (editIndex === -1) {
+        posts.push(newPost);
+    } else {
+        posts[editPostIndex] = newPost;
+        editPostIndex = -1; // reset the index after editing
+    }
+    //posts.push(newPost);
     localStorage.setItem("posts", JSON.stringify(posts));
     renderPosts(newPost);
 }
