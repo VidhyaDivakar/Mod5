@@ -9,6 +9,14 @@ const addPost = document.getElementById("addPost");
 const titleError = document.getElementById("titleError");
 const contentError = document.getElementById("contentError");
 
+// To load posts on refresh
+document.addEventListener("DOMContentLoaded", function () {
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+    posts.forEach(post => {
+        renderPosts(post);
+    });
+});
 // adding event listenrs for the input elements
 
 title.addEventListener("input", handleAdd);
@@ -32,6 +40,7 @@ function handleTextContent(event) {
 
 // Function to Add Posts to the page
 form.addEventListener("submit", function (event) {
+    event.preventDefault();
     handleAdd();
     handleTextContent();
     if (
@@ -51,17 +60,28 @@ form.addEventListener("submit", function (event) {
 });
 
 function handleSave() {
+    const newPost = {
+        title: title.value,
+        content: content.value
+    };
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+    posts.push(newPost);
+    localStorage.setItem("posts", JSON.stringify(posts));
+    renderPosts(newPost);
+}
+
+function renderPosts(post) {
     const postDiv = document.createElement("div"); // creating a div element to hold the post
-    postDiv.classList.add("post"); // this n the previous line are the main post container div.
-    const postTitle = document.createElement("h2");
-    postTitle.textContent = title.value;
+    postDiv.classList.add("post"); // this n the previous line are the main post container div. "Add the class 'post' to this div so CSS styling applies" JS (classList) → adds/removes those classes dynamically
+    const postTitle = document.createElement("h1");
+    postTitle.textContent = post.title;
     const postContent = document.createElement("p");
-    postContent.textContent = content.value;
+    postContent.textContent = post.content;
     postDiv.appendChild(postTitle);
     postDiv.appendChild(postContent);
     document.getElementById("postsContainer").appendChild(postDiv);
 
-   
-    localStorage.setItem("postData", JSON.stringify(postData));
+
+    //localStorage.setItem("postData", JSON.stringify(postData));
 }
 
