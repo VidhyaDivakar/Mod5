@@ -74,18 +74,39 @@ function handleSave() {
     }
     //posts.push(newPost);
     localStorage.setItem("posts", JSON.stringify(posts));
-    renderPosts(newPost);
+    renderAllPosts();
 }
 
-function renderPosts(post) {
+function renderAllPosts() {
+    const postsContainer = document.getElementById("postsContainer");
+    postsContainer.innerHTML = ""; // clear old UI
+
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+    posts.forEach((post, index) => {
+        renderPost(post, index);
+    });
+}
+
+function renderPost(post, index) {
     const postDiv = document.createElement("div"); // creating a div element to hold the post
     postDiv.classList.add("post"); // this n the previous line are the main post container div. "Add the class 'post' to this div so CSS styling applies" JS (classList) → adds/removes those classes dynamically
+
     const postTitle = document.createElement("h1");
     postTitle.textContent = post.title;
+
     const postContent = document.createElement("p");
     postContent.textContent = post.content;
+
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+
+    editBtn.addEventListener("click", function () {
+        handleEdit(index);
+    });
     postDiv.appendChild(postTitle);
     postDiv.appendChild(postContent);
+    postDiv.appendChild(editBtn);
     document.getElementById("postsContainer").appendChild(postDiv);
 
 
