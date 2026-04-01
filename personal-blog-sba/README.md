@@ -23,7 +23,7 @@ Ensure JavaScript is enabled so posts can be added and saved properly.
 
 **Test All Features Thoroughly:**
 
-Tested all the cases beliow anf it is working.
+Tested all the cases beliow and it is working.
 
 Adding new posts with valid and invalid data.
 
